@@ -24,6 +24,7 @@ class Card extends Component {
     this.calculateHp = this.calculateHp.bind(this);
     this.calculateStr = this.calculateStr.bind(this);
     this.calculateWeak = this.calculateWeak.bind(this);
+    this.calculateLevel = this.calculateLevel.bind(this);
   }
 
   calculateHp(healthPoint) {
@@ -46,6 +47,10 @@ class Card extends Component {
     } else {
       return 0;
     }
+  }
+
+  calculateLevel(detail) {
+
   }
 
   render() {
