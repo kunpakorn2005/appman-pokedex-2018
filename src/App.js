@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import './App.css';
-import axios from 'axios';
-import {fetchAllPokemons, fetchPokemons} from './action';
 import Modal from 'react-modal';
 import PokemonsLists from './modal';
-
-const COLORS = {
-  Psychic: "#f8a5c2",
-  Fighting: "#f0932b",
-  Fairy: "#c44569",
-  Normal: "#f6e58d",
-  Grass: "#badc58",
-  Metal: "#95afc0",
-  Water: "#3dc1d3",
-  Lightning: "#f9ca24",
-  Darkness: "#574b90",
-  Colorless: "#FFF",
-  Fire: "#eb4d4b"
-};
+import Card from './card';
 
 const Header = styled.h1`
   font-size: 24px;
@@ -27,7 +12,15 @@ const Header = styled.h1`
 `;
 
 const Content = styled.div`
-  
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 600px;
+  overflow-y: scroll;
+`;
+
+const Column = styled.div`
+  flex: 0 0 48%;
+  margin: 10px;
 `;
 
 const Footer = styled.div`
@@ -87,7 +80,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header>My Pokedex</Header>
-        <Content></Content>
+        <Content>
+          {
+            this.props.myPokemon.map((value) => <Column key={value.id}><Card key={value.id} detail={value} mainPage /></Column>)
+          }
+        </Content>
         <Footer>
           <AddButton onClick={this.openModal}>
             +
@@ -109,7 +106,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    pokemons: state.pokemons
+    pokemons: state.pokemons,
+    myPokemon: state.addPokemons,
   };
 };
 

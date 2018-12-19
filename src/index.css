@@ -38,3 +38,11 @@ body {
   top: 50%;
   border: 1px inset #7b7b7b;
 }
+
+input {
+  font-family: 'Atma', cursive;
+}
+
+button {
+  font-family: 'Atma', cursive;
+}
